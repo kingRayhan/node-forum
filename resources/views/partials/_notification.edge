@@ -1,0 +1,13 @@
+@if(flashMessage('msg')) 
+<div class="container">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="notification is-primary">
+                <button class="delete" onclick="this.parentNode.parentElement.parentElement.remove()"></button>
+                <h1>{{ flashMessage('msg') }}</h1>
+            </div>
+            <button class="delete"></button>
+        </div>
+    </div>
+</div>
+@endif

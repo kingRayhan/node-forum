@@ -1,0 +1,27 @@
+<nav class="navbar sub-nav is-white">
+    <div class="container">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="{{ route('home') }}">
+            Recent
+          </a>
+          <a class="navbar-item" href="#">
+            Unanswered
+          </a>
+          @loggedIn
+            <a class="navbar-item" href="#">
+              Your questions
+            </a>
+          @endloggedIn
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <form action="#" method="GET">
+              <input class="input" name="q" type="text" placeholder="Search the forum" value="">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
