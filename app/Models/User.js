@@ -6,7 +6,13 @@ const Hash = use('Hash')
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
+const md5 = require('md5')
+
 class User extends Model {
+    static get computed() {
+        return ['avater']
+    }
+
     static boot() {
         super.boot()
 
@@ -33,6 +39,16 @@ class User extends Model {
      */
     tokens() {
         return this.hasMany('App/Models/Token')
+    }
+
+    threads() {
+        return this.hasMany('App/Models/Thread')
+    }
+
+    getAvater({ email }) {
+        return `https://www.gravatar.com/avatar/${md5(
+            email.toLowerCase()
+        )}?s=100&d=mm`
     }
 }
 

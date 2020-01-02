@@ -1,74 +1,76 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @adoniscli/validator
+  /usr/local/bin/node /Users/shoaibsharif/.yarn/bin/yarn.js add adonisjs -D
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\user\bin;C:\Users\user\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\user\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\PuTTY;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0;%SYSTEMROOT%\System32\OpenSSH;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Roaming\npm;C:\Users\user\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\user\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\user\AppData\Roaming\Composer\vendor\bin;C:\Program Files\heroku\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  /Users/shoaibsharif/.yarn/bin:/Users/shoaibsharif/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/shoaibsharif/flutter/bin
 
 Yarn version: 
-  1.19.1
+  1.21.1
 
 Node version: 
-  10.16.3
+  13.2.0
 
 Platform: 
-  win32 x64
+  darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@adoniscli%2fvalidator: Not found
-      at Request.params.callback [as _callback] (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66926:18)
-      at Request.self.callback (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140564:22)
-      at Request.emit (events.js:198:13)
-      at Request.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141536:10)
-      at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141458:12)
-      at Object.onceWrapper (events.js:286:20)
-      at IncomingMessage.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1145:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: https://registry.yarnpkg.com/adonisjs: Not found
+      at Request.params.callback [as _callback] (/Users/shoaibsharif/.yarn/lib/cli.js:66947:18)
+      at Request.self.callback (/Users/shoaibsharif/.yarn/lib/cli.js:140665:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (/Users/shoaibsharif/.yarn/lib/cli.js:141637:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (/Users/shoaibsharif/.yarn/lib/cli.js:141559:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1200:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
-    "name": "adonis-fullstack-app",
-    "version": "4.1.0",
-    "adonis-version": "4.1.0",
-    "description": "The fullstack application boilerplate for Adonisjs",
-    "main": "index.js",
-    "scripts": {
-      "start": "node server.js",
-      "watch": "webpack",
-      "test": "node ace test"
-    },
-    "keywords": [
-      "adonisjs",
-      "adonis-app"
-    ],
-    "author": "",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-      "@adonisjs/ace": "^5.0.8",
-      "@adonisjs/auth": "^3.0.7",
-      "@adonisjs/bodyparser": "^2.0.5",
-      "@adonisjs/cors": "^1.0.7",
-      "@adonisjs/fold": "^4.0.9",
-      "@adonisjs/framework": "^5.0.9",
-      "@adonisjs/ignitor": "^2.0.8",
-      "@adonisjs/lucid": "^6.1.3",
-      "@adonisjs/session": "^1.0.27",
-      "@adonisjs/shield": "^1.0.8",
-      "mysql": "^2.17.1"
-    },
-    "devDependencies": {
-      "bulma": "^0.8.0",
-      "css-loader": "^0.28.10",
-      "extract-text-webpack-plugin": "^3.0.2",
-      "node-sass": "^4.7.2",
-      "sass-loader": "^6.0.6",
-      "webpack": "^3.11.0"
-    },
-    "autoload": {
-      "App": "./app"
-    }
+      "name": "adonis-fullstack-app",
+      "version": "4.1.0",
+      "adonis-version": "4.1.0",
+      "description": "The fullstack application boilerplate for Adonisjs",
+      "main": "index.js",
+      "scripts": {
+          "start": "node server.js",
+          "watch": "webpack",
+          "test": "node ace test",
+          "dev": "adonis serve"
+      },
+      "keywords": [
+          "adonisjs",
+          "adonis-app"
+      ],
+      "author": "",
+      "license": "UNLICENSED",
+      "private": true,
+      "dependencies": {
+          "@adonisjs/ace": "^5.0.8",
+          "@adonisjs/auth": "^3.0.7",
+          "@adonisjs/bodyparser": "^2.0.5",
+          "@adonisjs/cors": "^1.0.7",
+          "@adonisjs/fold": "^4.0.9",
+          "@adonisjs/framework": "^5.0.9",
+          "@adonisjs/ignitor": "^2.0.8",
+          "@adonisjs/lucid": "^6.1.3",
+          "@adonisjs/session": "^1.0.27",
+          "@adonisjs/shield": "^1.0.8",
+          "@adonisjs/validator": "^5.0.6",
+          "mysql": "^2.17.1"
+      },
+      "devDependencies": {
+          "bulma": "^0.8.0",
+          "css-loader": "^0.28.10",
+          "extract-text-webpack-plugin": "^3.0.2",
+          "node-sass": "^4.7.2",
+          "sass-loader": "^6.0.6",
+          "webpack": "^3.11.0"
+      },
+      "autoload": {
+          "App": "./app"
+      }
   }
 
 yarn manifest: 
@@ -245,6 +247,15 @@ Lockfile:
       node-csp "^1.0.1"
       node-guard "^1.0.0"
       uuid "^3.3.2"
+  
+  "@adonisjs/validator@^5.0.6":
+    version "5.0.6"
+    resolved "https://registry.yarnpkg.com/@adonisjs/validator/-/validator-5.0.6.tgz#5354cebcf578b964ca58de24436ae00718bd5fd4"
+    integrity sha512-Koql5nOSfRFhNwkvk38tAHLfpxwuOinZIuLhPP0zAfHCltrXCh02MfydfgA13vDc5LITJgWycXFv+FNb7ljCqg==
+    dependencies:
+      "@adonisjs/generic-exceptions" "^2.0.1"
+      indicative "^5.0.8"
+      lodash "^4.17.11"
   
   abbrev@1:
     version "1.1.1"
@@ -2625,6 +2636,11 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/indexes-of/-/indexes-of-1.0.1.tgz#f30f716c8e2bd346c7b67d3df3915566a7c05607"
     integrity sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
+  
+  indicative@^5.0.8:
+    version "5.0.8"
+    resolved "https://registry.yarnpkg.com/indicative/-/indicative-5.0.8.tgz#e635f6c0838ced1a949bc898e5f8316f6291be1e"
+    integrity sha512-Do9YKlrxyvK6RpMs9AdtxmjhweKrA6hJbJejY81iD8aYjjvOU4HYkJcM2IUxC3S7ZRm/L11u67QT4OQ101N5HQ==
   
   inflation@^2.0.0:
     version "2.0.0"

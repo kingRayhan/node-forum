@@ -2,15 +2,11 @@
     <div class="container">
       <div id="topNav" class="navbar-menu">
         <div class="navbar-start">
-          <a href="#" class="navbar-item">
+          <a href="{{ route('homePage') }}" class="navbar-item">
             Forum
           </a>
         </div>
-  
-
-
         <div class="navbar-end">
-          
           @loggedIn
             <div class="navbar-item">
               <span>
@@ -37,19 +33,54 @@
                   </a>
                 </p>
                 <p class="control">
-                  <a href="{{ route('auth.login') }}" class="button is-info is-outlined">
+                  <a href="#" class="button is-info is-outlined" onclick="document.getElementById('login-modal').classList.add('is-active')">
                     <span>Login</span>
                   </a>
                 </p>
               </div>
             </div>
           @endloggedIn
-          
-          
-
-
         </div>
       </div>
     </div>
   </nav>
-  
+
+
+
+
+<div class="modal" id="login-modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+      <div class="card">
+        <div class="card-content">
+          <form action="{{ route('auth.login') }}" method="POST">
+            {{ csrfField() }}
+            <div class="field">
+              <div class="control">
+              <input name="email" class="input is-medium {{ hasErrorFor('email') ? 'is-danger': '' }}" type="text" placeholder="Your email" value="{{old('email')}}">
+                @if(hasErrorFor('email'))
+                  <p class="help is-danger">
+                    {{ getErrorFor('email') }}
+                  </p>
+                @endif
+              </div>
+            </div>
+    
+            <div class="field">
+              <div class="control">
+                <input name="password" class="input is-medium {{ hasErrorFor('password') ? 'is-danger': '' }}" type="password" placeholder="Your password">
+                @if(hasErrorFor('password'))
+                  <p class="help is-danger">
+                    {{ getErrorFor('password') }}
+                  </p>
+                @endif
+              </div>
+            </div>
+            <button class="button is-block is-info is-medium is-fullwidth">Login</button>
+          </form>
+        </div>
+      </div>
+      {{--  .card  --}}
+  </div>
+  <button class="modal-close is-large" aria-label="close" onclick="document.getElementById('login-modal').classList.remove('is-active')"></button>
+</div>

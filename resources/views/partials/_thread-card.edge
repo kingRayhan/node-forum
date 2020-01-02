@@ -1,0 +1,23 @@
+<article class="media">
+    <div class="media-left">
+        <p class="image is-48x48">
+            <img src="{{ thread.user.avater }}" width="35" alt="Rayhan">
+        </p>
+    </div>
+    <div class="media-content">
+        <div class="content">
+            <h4>
+                <a class="has-text-dark" href="{{ route('threads.show', { slug: thread.slug } ) }}">{{thread.title}}</a>
+            </h4>
+            <span class="tag is-primary is-light"><a href="#">{{ thread.tag.name }}</a></span>
+            <p>
+                <strong>{{ thread.user.username }}</strong> posted {{ thread.created_at }}
+            </p>
+        </div>
+    </div>
+    <div class="media-right">
+        <span class="has-text-grey-light">
+            35 replies
+        </span>
+    </div>
+</article>

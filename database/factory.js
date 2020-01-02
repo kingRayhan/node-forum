@@ -12,13 +12,24 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-// const Factory = use('Factory')
+const Factory = use('Factory')
 
-// Factory.blueprint('App/Models/Tag', faker => {
-//     let name = faker.random.word
-//     return {
-//         name: name,
-//         slug: name
-//     }
-// })
+Factory.blueprint('App/Models/Tag', faker => {
+    const name = faker.word()
+    return {
+        name: name,
+        slug: name
+    }
+})
 
+Factory.blueprint('App/Models/Thread', faker => {
+    let tagIds = [6, 7, 8]
+    // let userIds = [6, 7, 8]
+    return {
+        title: faker.paragraph({ sentences: 1 }),
+        body: faker.paragraph(),
+        tag_id: tagIds[Math.floor(Math.random() * tagIds.length)],
+        // user_id: userIds[Math.floor(Math.random() * userIds.length)]
+        user_id: 7
+    }
+})

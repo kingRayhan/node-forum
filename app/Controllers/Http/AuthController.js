@@ -1,5 +1,13 @@
 'use strict'
 
+/** @typedef {import('@adonisjs/framework/src/Request')} Request */
+/** @typedef {import('@adonisjs/framework/src/Response')} Response */
+/** @typedef {import('@adonisjs/framework/src/View')} View */
+/** @typedef {import('@adonisjs/session/src/Session')} Session*/
+/** @typedef {import('@adonisjs/auth/src/Schemes/Session')} Auth*/
+/** @typedef {import('@adonisjs/validator/src/Validator')} validator*/
+
+/** @type  {import('@adonisjs/validator/src/Validator')}*/
 const { validateAll } = use('Validator')
 const User = use('App/Models/User')
 
@@ -12,24 +20,52 @@ class AuthController {
         return view.render('auth/register')
     }
 
+    /**
+     *
+     * @param {object} ctx
+     * @param {Request} ctx.request
+     * @param {Response} ctx.response
+     * @param {Session} ctx.session
+     * @param {Auth} ctx.auth
+     */
     async login({ request, response, session, auth }) {
         /**
          * Validation
          */
-        const valididation = await validateAll(request.all(), {
-            email: 'required|email',
-            password: 'required'
-        })
+
+        const valididation = await validateAll(
+            request.all(),
+            {
+                email: 'required|email',
+                password: 'required'
+            },
+            {
+                required: '{{field}} is required',
+                email: `Not a valid email address`
+            }
+        )
         if (valididation.fails()) {
             session.withErrors(valididation.messages()).flashAll()
-            return response.redirect('back')
+            return response.route('auth.login')
         }
         const { email, password } = request.all()
-        await auth.attempt(email, password)
+        try {
+            await auth.attempt(email, password)
+        } catch (error) {
+            return response.route('auth.login')
+        }
         session.flash({ msg: 'You have been logged in successfully!!' })
         return response.route('homePage')
     }
 
+    /**
+     *
+     * @param {object} ctx
+     * @param {Request} ctx.request
+     * @param {Response} ctx.response
+     * @param {Session} ctx.session
+     * @param {Auth} ctx.auth
+     */
     async register({ request, response, session }) {
         /**
          * Validation
@@ -52,6 +88,14 @@ class AuthController {
         return response.route('homePage')
     }
 
+    /**
+     *
+     * @param {object} ctx
+     * @param {Request} ctx.request
+     * @param {Response} ctx.response
+     * @param {Session} ctx.session
+     * @param {Auth} ctx.auth
+     */
     logout({ request, response, auth }) {
         auth.logout()
         return response.route('auth.login')

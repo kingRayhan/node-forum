@@ -1,9 +1,16 @@
+<a href="{{ route('threads.create') }}" class="button is-info is-primary is-block is-medium">New Thread</a>
+
+<br>
+
 <aside class="menu">
     <p class="menu-label">
       Tags
     </p>
     <ul class="menu-list">
-      <li><a>Dashboard</a></li>
-      <li><a>Customers</a></li>
+      @each(tag in tags.toJSON())
+        <li>
+          <a href="#">{{tag.name}}</a>
+        </li>  
+      @endeach
     </ul>
 </aside>

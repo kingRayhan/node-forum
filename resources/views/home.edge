@@ -1,7 +1,7 @@
 @layout('layouts.default')
 
 @section('content')
-    <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste error eaque mollitia sit odio id, quaerat tenetur voluptas atque nihil hic assumenda numquam debitis, alias ab architecto maxime neque! Laboriosam?
-    </h1>
+    @each(thread in threads.toJSON())
+      @include('partials._thread-card')
+    @endeach
 @endsection
