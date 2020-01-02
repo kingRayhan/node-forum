@@ -12,12 +12,13 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
+// const Factory = use('Factory')
 
-Factory.blueprint('App/Models/Tag', faker => {
-    let name = faker.random.word
-    return {
-        name: name,
-        slug: name
-    }
-})
+// Factory.blueprint('App/Models/Tag', faker => {
+//     let name = faker.random.word
+//     return {
+//         name: name,
+//         slug: name
+//     }
+// })
+
