@@ -7,7 +7,8 @@
     "scripts": {
         "start": "node server.js",
         "watch": "webpack",
-        "test": "node ace test"
+        "test": "node ace test",
+        "dev": "adonis serve --dev"
     },
     "keywords": [
         "adonisjs",
@@ -28,9 +29,13 @@
         "@adonisjs/session": "^1.0.27",
         "@adonisjs/shield": "^1.0.8",
         "@adonisjs/validator": "^5.0.6",
-        "mysql": "^2.17.1"
+        "mysql": "^2.17.1",
+        "pg": "^7.17.0",
+        "slugify": "^1.3.6",
+        "sqlite3": "^4.1.1"
     },
     "devDependencies": {
+        "@adonisjs/cli": "^4.0.12",
         "bulma": "^0.8.0",
         "css-loader": "^0.28.10",
         "extract-text-webpack-plugin": "^3.0.2",

@@ -16,9 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/')
-    .render('home')
-    .as('homePage')
+Route.get('/', 'homepageController.homePage').as('homePage')
 // .middleware(['auth'])
 
 /**
@@ -30,3 +28,10 @@ Route.get('/auth/register', 'AuthController.registerPage').as('auth.register')
 Route.post('/auth/login', 'AuthController.login').as('auth.login')
 Route.post('/auth/register', 'AuthController.register').as('auth.register')
 Route.post('/auth/logout', 'AuthController.logout').as('auth.logout')
+
+/**
+ * Thread
+ */
+
+Route.get('/thread/create', 'ThreadController.create').as('threads.create')
+Route.post('/thread/store', 'ThreadController.store').as('threads.store')

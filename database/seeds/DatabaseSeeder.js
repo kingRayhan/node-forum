@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| TagSeeder
+| DatabaseSeeder
 |--------------------------------------------------------------------------
 |
 | Make use of the Factory instance to seed database with dummy data or
@@ -12,13 +12,11 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
-const Database = use('Database')
 
-class TagSeeder {
+class DatabaseSeeder {
     async run() {
-        // let data = await Database.table('tags')
-        const tags = await Factory.model('App/Models/Tag').createMany(5)
+        await Factory.model('App/Models/Tag').createMany(5)
     }
 }
 
-module.exports = TagSeeder
+module.exports = DatabaseSeeder

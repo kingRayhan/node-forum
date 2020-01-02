@@ -15,7 +15,7 @@
 const Factory = use('Factory')
 
 Factory.blueprint('App/Models/Tag', faker => {
-    let name = faker.random.word
+    const name = faker.word()
     return {
         name: name,
         slug: name
