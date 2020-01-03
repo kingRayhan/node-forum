@@ -84,7 +84,15 @@ class ThreadController {
      * @param {View} ctx.view
      */
     async show({ params, request, response, view }) {
-        return view.render('threads.show')
+        let { id: slug } = params
+        let thread = await Thread.query()
+            .where('slug', '=', slug)
+            .with('user')
+            .with('tag')
+            .firstOrFail()
+
+        console.log(thread.toJSON())
+        return view.render('threads.show', { thread: thread.toJSON() })
     }
 
     /**

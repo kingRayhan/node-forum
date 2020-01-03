@@ -35,8 +35,10 @@ Route.post('/auth/logout', 'AuthController.logout').as('auth.logout')
 /**
  * Thread
  */
+
 Route.resource('threads', 'ThreadController').middleware(
     new Map([
         [['store', 'update', 'destroy', 'create', 'edit'], ['Authenticated']]
     ])
 )
+// Route.get('threads/:slug' , 'ThreadController.show')
