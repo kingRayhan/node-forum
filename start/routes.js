@@ -41,4 +41,3 @@ Route.resource('threads', 'ThreadController').middleware(
         [['store', 'update', 'destroy', 'create', 'edit'], ['Authenticated']]
     ])
 )
-// Route.get('threads/:slug' , 'ThreadController.show')

@@ -9,10 +9,6 @@ class Thread extends Model {
         this.addTrait('Slugify')
     }
 
-    static get primaryKey() {
-        return 'slug'
-    }
-
     user() {
         return this.belongsTo('App/Models/User')
     }

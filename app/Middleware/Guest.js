@@ -11,6 +11,7 @@ class Guest {
      */
     async handle({ request, response, auth }, next) {
         let isAuthenticated = true
+
         try {
             await auth.check()
         } catch (error) {
