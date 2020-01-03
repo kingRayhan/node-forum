@@ -7,7 +7,9 @@ class HomepageController {
         let threads = await Thread.query()
             .with('tag')
             .with('user')
+            // .order('id', 'desc')
             .fetch()
+
         return view.render('home', { threads })
     }
 }

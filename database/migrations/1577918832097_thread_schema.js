@@ -9,15 +9,21 @@ class ThreadSchema extends Schema {
             table.increments()
             table.string('title')
             table.string('slug').unique()
+            table
+                .integer('parent_id')
+                .unsigned()
+                .index()
             table.text('body')
             table
                 .integer('user_id')
                 .unsigned()
                 .index()
+
             table
                 .integer('tag_id')
                 .unsigned()
                 .index()
+            table.timestamp('last_reply_at')
             table.timestamps()
 
             table.foreign('user_id').references('users.id')

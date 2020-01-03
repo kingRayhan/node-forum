@@ -6,9 +6,10 @@
       <h2 class="subtitle is-4">
         {{ thread.title }} <span class="tag">{{thread.tag.name}}</span>
       </h2>
+      <p>id: {{thread.id}}</p>
 
 
-      <div class="media">
+      <article class="media">
         <div class="media-left">
           <p class="image is-48x48">
             <img src="{{ thread.user.avater }}" alt="{{ thread.user.username }}">
@@ -19,11 +20,40 @@
             <strong>{{thread.user.username}}</strong> <br>
             <small>{{ thread.created_at }}</small>
           </div>
-
           <p>{{thread.body}}</p>
+          <div id="replies has-margin-top-3">
+              <h2 class="is-size-4">Replies</h2>
+              @each(reply in thread.replies)
+                @include('partials._reply')
+              @endeach
+
+          </div>
+
         </div>
-      </div>
-      
+      </article>
+    </div>
+    <div class="section">
+      @loggedIn
+        <form action="#" method="POST">
+          {{ csrfField() }}
+
+          <div class="field">
+            <div class="control">
+              <label class="label">Reply</label>
+              <textarea name="body" class="textarea{{ hasErrorFor('body') ? ' is-danger' : '' }}">{{ old('body', '') }}</textarea>
+
+              @if(hasErrorFor('body'))
+                <p class="help is-danger">{{ getErrorFor('body') }}</p>
+              @endif
+            </div>
+          </div>
+          <button class="button is-info">Reply</button>
+        </form>
+      @else
+        <div class="notification is-info">
+          Please <a href="{{ route('auth.login') }}">log in</a> to reply to this post!
+        </div>
+      @endloggedIn
     </div>
   </div>
 @endsection

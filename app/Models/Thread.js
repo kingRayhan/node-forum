@@ -9,12 +9,26 @@ class Thread extends Model {
         this.addTrait('Slugify')
     }
 
+    // static scopeWithReplies(query) {
+    //     return query
+    //         .with('replies')
+    //         .with('replies.replies')
+    //         .with('replies.replies.replies')
+    // }
+
     user() {
         return this.belongsTo('App/Models/User')
     }
 
     tag() {
         return this.belongsTo('App/Models/Tag')
+    }
+
+    replies() {
+        return this.hasMany('App/Models/Thread', 'id', 'parent_id').orderBy(
+            'created_at',
+            'asc'
+        )
     }
 }
 

@@ -46,9 +46,8 @@ class User extends Model {
     }
 
     getAvater({ email }) {
-        return `https://www.gravatar.com/avatar/${md5(
-            email.toLowerCase()
-        )}?s=100&d=mm`
+        const $mail = email.toLowerCase()
+        return `https://www.gravatar.com/avatar/${md5($mail)}?s=100&d=mm`
     }
 }
 

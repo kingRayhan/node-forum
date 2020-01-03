@@ -1,0 +1,25 @@
+<article class="media">
+    <div class="media-left">
+        <div>
+            <p>id: {{reply.id}}</p>
+            <p>parent: {{reply.parent_id}}</p>
+        </div>
+      <p class="image is-48x48">
+        <img src="{{ reply.user.avater }}" alt="{{ reply.user.username }}">
+      </p>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <strong>{{reply.user.username}}</strong> <br>
+        <small>{{ reply.created_at }}</small>
+      </div>
+      <p>{{reply.body}}</p>
+      <div class="nested-replies">
+        @if(reply.replies.length)
+            @each(reply in reply.replies)
+                @include('partials._reply')
+            @endeach
+        @endif
+      </div>
+    </div>
+  </article>

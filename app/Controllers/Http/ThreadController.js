@@ -89,6 +89,8 @@ class ThreadController {
             .where('slug', '=', slug)
             .with('user')
             .with('tag')
+            .with('replies')
+            .with('replies.user')
             .firstOrFail()
 
         console.log(thread.toJSON())
