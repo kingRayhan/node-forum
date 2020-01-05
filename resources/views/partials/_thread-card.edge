@@ -9,15 +9,19 @@
             <h4>
                 <a class="has-text-dark" href="{{ route('threads.show', { id: thread.slug } ) }}">{{thread.title}}</a>
             </h4>
-            <span class="tag is-primary is-light"><a href="#">{{ thread.tag.name }}</a></span>
+                <span class="tag is-primary is-light"><a href="{{ route('tag.threads' , { tag_slug: thread.tag.slug }) }}">{{ thread.tag.name }}</a></span>
             <p>
-                <strong>{{ thread.user.username }}</strong> posted {{ thread.created_at }}
+                @if(thread.replies.length)
+                    <strong>{{ thread.lastReply.user.username }}</strong> replied at {{ thread.lastReply.created_at }}
+                @else 
+                    <strong>{{ thread.user.username }}</strong> posted {{ thread.created_at }}
+                @endif
             </p>
         </div>
     </div>
     <div class="media-right">
         <span class="has-text-grey-light">
-            35 replies
+            {{ thread.replies.length }} replies
         </span>
     </div>
 </article>

@@ -23,13 +23,13 @@ Factory.blueprint('App/Models/Tag', faker => {
 })
 
 Factory.blueprint('App/Models/Thread', faker => {
-    let tagIds = [6, 7, 8]
+    let tagIds = [1, 2, 3, 4, 5]
     // let userIds = [6, 7, 8]
     return {
         title: faker.paragraph({ sentences: 1 }),
         body: faker.paragraph(),
         tag_id: tagIds[Math.floor(Math.random() * tagIds.length)],
         // user_id: userIds[Math.floor(Math.random() * userIds.length)]
-        user_id: 7
+        user_id: 1
     }
 })

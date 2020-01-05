@@ -9,12 +9,20 @@ class Thread extends Model {
         this.addTrait('Slugify')
     }
 
-    // static scopeWithReplies(query) {
-    //     return query
-    //         .with('replies')
-    //         .with('replies.replies')
-    //         .with('replies.replies.replies')
-    // }
+    static get dates() {
+        return super.dates.concat(['last_reply_at'])
+    }
+
+    static scopeFetchAllThreads(query) {
+        return query
+            .with('tag')
+            .with('user')
+            .with('replies')
+            .with('lastReply')
+            .with('lastReply.user')
+            .whereNull('parent_id')
+            .orderBy('last_reply_at', 'desc')
+    }
 
     user() {
         return this.belongsTo('App/Models/User')
@@ -29,6 +37,10 @@ class Thread extends Model {
             'created_at',
             'asc'
         )
+    }
+
+    lastReply() {
+        return this.hasOne('App/Models/Thread', 'id', 'parent_id')
     }
 }
 

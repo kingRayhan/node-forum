@@ -6,7 +6,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node server.js",
-        "watch": "webpack",
+        "parcel": "parcel build resources/assets/app.js --out-dir public",
         "test": "node ace test",
         "dev": "adonis serve --dev"
     },
@@ -30,6 +30,7 @@
         "@adonisjs/shield": "^1.0.8",
         "@adonisjs/validator": "^5.0.6",
         "md5": "^2.2.1",
+        "moment": "^2.24.0",
         "mysql": "^2.17.1",
         "pg": "^7.17.0",
         "slugify": "^1.3.6",
@@ -41,6 +42,7 @@
         "css-loader": "^0.28.10",
         "extract-text-webpack-plugin": "^3.0.2",
         "node-sass": "^4.7.2",
+        "parcel-bundler": "^1.12.4",
         "sass-loader": "^6.0.6",
         "webpack": "^3.11.0"
     },

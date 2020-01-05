@@ -36,8 +36,20 @@ Route.post('/auth/logout', 'AuthController.logout').as('auth.logout')
  * Thread
  */
 
+Route.get('/threads/unanswered', 'ThreadController.getUnanseredThreads').as(
+    'threads.unanswered'
+)
 Route.resource('threads', 'ThreadController').middleware(
     new Map([
         [['store', 'update', 'destroy', 'create', 'edit'], ['Authenticated']]
     ])
 )
+
+Route.get('/tags/:tag_slug', 'TagController.ThreadsOfTag').as('tag.threads')
+
+Route.post(
+    'threads/:parent_id/store_child_thread',
+    'ThreadController.storeChildThread'
+)
+    .middleware(['Authenticated'])
+    .as('threads.storeChildThread')

@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Tag extends Model {
+    threads() {
+        return this.hasMany('App/Models/Thread')
+    }
 }
 
 module.exports = Tag

@@ -5,7 +5,13 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 /** @typedef {import('@adonisjs/session/src/Session')} Session*/
 /** @typedef {import('@adonisjs/auth/src/Schemes/Session')} Auth*/
+
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Thread = use('App/Models/Thread')
+
+const Env = use('Env')
+const moment = require('moment')
+
 const { validateAll } = use('Validator')
 /**
  * Resourceful controller for interacting with threads
@@ -92,8 +98,6 @@ class ThreadController {
             .with('replies')
             .with('replies.user')
             .firstOrFail()
-
-        console.log(thread.toJSON())
         return view.render('threads.show', { thread: thread.toJSON() })
     }
 
@@ -127,6 +131,59 @@ class ThreadController {
      * @param {Response} ctx.response
      */
     async destroy({ params, request, response }) {}
+
+    /**
+     * Store a child Thread
+     * @param {object} ctx
+     * @param {Request} ctx.request
+     * @param {Response} ctx.response
+     * @param {Session} ctx.session
+     * @param {Auth} ctx.auth
+     */
+    async storeChildThread({ params, response, request, session, auth }) {
+        /**
+         * Validation
+         */
+        const valididation = await validateAll(request.all(), {
+            body: 'required'
+        })
+        if (valididation.fails()) {
+            session.withErrors(valididation.messages()).flashAll()
+            return response.redirect('back')
+        }
+
+        /**
+         * Parent thread
+         */
+        const parentThread = await Thread.find(params.parent_id)
+        parentThread.last_reply_at = moment()
+        /**
+         * Create a child thread
+         */
+
+        const thread = new Thread()
+
+        thread.fill({
+            body: request.all().body,
+            user_id: auth.user.id,
+            parent_id: params.parent_id
+        })
+
+        await thread.save()
+        await parentThread.save()
+
+        session.flash({ msg: 'Reply posted' })
+        return response.route('back')
+    }
+
+    async getUnanseredThreads({ view, request }) {
+        let threads = await Thread.query()
+            .fetchAllThreads()
+            .doesntHave('replies')
+            .paginate(request.input('page', 1), Env.get('THREAD_SHOW_LIMIT'))
+
+        return view.render('home', { threads })
+    }
 }
 
 module.exports = ThreadController

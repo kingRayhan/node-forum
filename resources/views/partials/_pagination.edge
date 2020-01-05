@@ -1,0 +1,12 @@
+@if( last_page != 1 )
+    <nav class="pagination is-rounded is-small" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" href="?page={{ page - 1 }}" {{ page == 1 ? 'disabled': '' }}>Previous</a>
+        <a class="pagination-next" href="?page={{ page + 1 }}" {{ page == last_page ? 'disabled': '' }}>Next page</a>
+
+        <ul class="pagination-list">
+            @each(currentPageNo in paginationArray(last_page))
+                <li><a href="?page={{currentPageNo}}" class="pagination-link {{ currentPageNo == page ? 'is-current': '' }}">{{ currentPageNo }}</a></li>
+            @endeach
+        </ul>
+    </nav>
+@endif

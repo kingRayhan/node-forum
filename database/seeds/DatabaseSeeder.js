@@ -15,8 +15,8 @@ const Factory = use('Factory')
 
 class DatabaseSeeder {
     async run() {
-        await Factory.model('App/Models/Tag').createMany(5)
-        await Factory.model('App/Models/Thread').createMany(400)
+        // await Factory.model('App/Models/Tag').createMany(5)
+        await Factory.model('App/Models/Thread').createMany(1000)
     }
 }
 

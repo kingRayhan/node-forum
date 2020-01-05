@@ -189,6 +189,10 @@
   fieldset[disabled] .pagination-ellipsis {
     cursor: not-allowed; }
 
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: #f14668; }
+
 /*! bulma.io v0.8.0 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -5279,7 +5283,7 @@ a.navbar-item,
   white-space: nowrap; }
 
 .pagination-link.is-current {
-  background-color: #3273dc;
+  background-color: #3298dc;
   border-color: #3273dc;
   color: #fff; }
 

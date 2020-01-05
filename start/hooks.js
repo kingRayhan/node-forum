@@ -10,9 +10,21 @@ hooks.after.providersBooted(async () => {
     /**
      * Setup tags global template variable
      */
+    /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
     const Tag = use('App/Models/Tag')
-    let tags = await Tag.all()
+    let tags = await Tag.query()
+        .with('threads')
+        .fetch()
+
     View.global('tags', tags)
+
+    View.global('paginationArray', length => {
+        return Array.from({ length }).map((page, i) => ++i)
+    })
+
+    View.global('log', data => {
+        return JSON.stringify(data, undefined, 4)
+    })
 
     /**
      * extending validator

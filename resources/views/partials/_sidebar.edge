@@ -9,7 +9,12 @@
     <ul class="menu-list">
       @each(tag in tags.toJSON())
         <li>
-          <a href="#">{{tag.name}}</a>
+        <a href="{{ route('tag.threads' , { tag_slug: tag.slug }) }}" class=" {{request.params.tag_slug == tag.slug ? 'is-active': '' }}">
+            <span class="tag bd-mini-tag is-success">
+              {{tag.threads.length}}
+            </span>
+            {{tag.name}}
+          </a>
         </li>  
       @endeach
     </ul>

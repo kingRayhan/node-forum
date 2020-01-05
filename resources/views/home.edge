@@ -1,7 +1,16 @@
 @layout('layouts.default')
 
+
 @section('content')
-    @each(thread in threads.toJSON())
+    @set('threads' , threads.toJSON())
+
+
+    @!component('partials._pagination' , last_page = threads.lastPage , page = threads.page)
+
+    @each(thread in threads.data)
       @include('partials._thread-card')
     @endeach
+
+    <br>
+    @!component('partials._pagination' , last_page = threads.lastPage , page = threads.page)
 @endsection

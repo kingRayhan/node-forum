@@ -6,9 +6,6 @@
       <h2 class="subtitle is-4">
         {{ thread.title }} <span class="tag">{{thread.tag.name}}</span>
       </h2>
-      <p>id: {{thread.id}}</p>
-
-
       <article class="media">
         <div class="media-left">
           <p class="image is-48x48">
@@ -34,9 +31,8 @@
     </div>
     <div class="section">
       @loggedIn
-        <form action="#" method="POST">
+        <form action="{{ route('threads.storeChildThread' , { parent_id: thread.id }) }}" method="POST">
           {{ csrfField() }}
-
           <div class="field">
             <div class="control">
               <label class="label">Reply</label>
