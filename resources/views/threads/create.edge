@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="box content">
-    <form action="{{ route('threads.store') }}" method="POST">
+    <form action="{{ route('threads.store') }}" method="POST"  id="thread-creator">
       {{ csrfField() }}
 
       <div class="field">
@@ -36,7 +36,11 @@
       <div class="field">
         <div class="control">
           <label class="label">Post body</label>
-          <textarea name="body" class="textarea{{ hasErrorFor('body') ? ' is-danger' : '' }}">{{ old('body', '') }}</textarea>
+
+          <div class="editor" class="textarea{{ hasErrorFor('body') ? ' is-danger' : '' }}">{{ old('body', '') }}</div>
+
+          <input type="hidden" name="body" />
+
 
           @if(hasErrorFor('body'))
             <p class="help is-danger">{{ getErrorFor('body') }}</p>
@@ -47,3 +51,18 @@
     </form>
   </div>
 @endsection
+
+@section('footer')
+    <script>
+      document.getElementById('thread-creator').addEventListener('submit' , function(e){
+        e.preventDefault()
+
+        let html = document.querySelector('.ql-editor').innerHTML
+        document.querySelector('input[name="body"]').value = html 
+
+        this.submit()
+      })
+
+    </script>
+@endsection
+

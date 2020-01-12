@@ -12,9 +12,9 @@
                 <span class="tag is-primary is-light"><a href="{{ route('tag.threads' , { tag_slug: thread.tag.slug }) }}">{{ thread.tag.name }}</a></span>
             <p>
                 @if(thread.replies.length)
-                    <strong>{{ thread.lastReply.user.username }}</strong> replied at {{ thread.lastReply.created_at }}
+                    <a href="{{ route('profile.index' , { username: thread.lastReply.user.username }) }}">{{ '@' + thread.lastReply.user.username }}</a> replied at {{ thread.lastReply.created_at }}
                 @else 
-                    <strong>{{ thread.user.username }}</strong> posted {{ thread.created_at }}
+                    <a href="{{ route('profile.index' , { username: thread.user.username }) }}">{{ '@' + thread.user.username }}</a> posted {{ thread.created_at }}
                 @endif
             </p>
         </div>

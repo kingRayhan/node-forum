@@ -9,10 +9,11 @@ class Authenticated {
      * @param {Request} ctx.request
      * @param {Function} next
      */
-    async handle({ request, response, auth }, next) {
+    async handle({ request, response, auth, session }, next) {
         try {
             await auth.check()
         } catch (error) {
+            session.put('redirect_to', request.url())
             response.route('auth.login')
         }
         await next()

@@ -6,16 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Node Forum</title>
-
     {{ style('app') }}
-    {{--  {{ style('tailwind') }}  --}}
 
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" /> 
+
+    @!section('header')
 </head>
-
 <body>
     @include('partials._navigation')
     @include('partials._forumNavigation')
-    
     @include('partials._notification')
     
     <div class="container">
@@ -28,7 +27,10 @@
             </div>
         </div>
     </div>
+    
+    {{ script('app') }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
-</body>
+    @!section('footer')
 
+</body>
 </html>

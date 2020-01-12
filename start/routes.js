@@ -35,7 +35,6 @@ Route.post('/auth/logout', 'AuthController.logout').as('auth.logout')
 /**
  * Thread
  */
-
 Route.get('/threads/unanswered', 'ThreadController.getUnanseredThreads').as(
     'threads.unanswered'
 )
@@ -44,6 +43,8 @@ Route.resource('threads', 'ThreadController').middleware(
         [['store', 'update', 'destroy', 'create', 'edit'], ['Authenticated']]
     ])
 )
+
+Route.get('/@:username', 'ProfileController.index').as('profile.index')
 
 Route.get('/tags/:tag_slug', 'TagController.ThreadsOfTag').as('tag.threads')
 

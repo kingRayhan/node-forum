@@ -1,0 +1,73 @@
+@layout('layouts/default')
+
+@section('content')
+  <div class="box content">
+    <form action="{{ route('threads.update' , { id: thread.id }) }}?_method=put" method="POST"  id="thread-creator">
+      {{ csrfField() }}
+      <div class="field">
+        <div class="control">
+          <label class="label">Post title</label>
+          <input name="title" class="input{{ hasErrorFor('title') ? ' is-danger' : '' }}" type="text" placeholder="e.g. How can I build a forum with AdonisJS?" value="{{ thread.title }}">
+
+          @if(hasErrorFor('title'))
+            <p class="help is-danger">{{ getErrorFor('title') }}</p>
+          @endif
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="label">Choose a tag</label>
+          <div class="select is-fullwidth{{ hasErrorFor('tag') ? ' is-danger' : '' }}">
+            <select name="tag">
+              @each(tag in tags.toJSON())
+                <option 
+                    @if(thread.tag_id == tag.id) 
+                        selected 
+                    @endif 
+                value="{{ tag.id }}">{{ tag.name }}</option>
+              @endeach
+            </select>
+          </div>
+
+          @if(hasErrorFor('tag'))
+            <p class="help is-danger">{{ getErrorFor('tag') }}</p>
+          @endif
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <label class="label">Post body</label>
+
+          <div class="editor" class="textarea{{ hasErrorFor('body') ? ' is-danger' : '' }}">
+            {{{ thread.body }}}  
+          </div>
+
+          <input type="hidden" name="body" />
+
+
+          @if(hasErrorFor('body'))
+            <p class="help is-danger">{{ getErrorFor('body') }}</p>
+          @endif
+        </div>
+      </div>
+      <button class="button is-info">Post</button>
+    </form>
+  </div>
+@endsection
+
+@section('footer')
+    <script>
+      document.getElementById('thread-creator').addEventListener('submit' , function(e){
+        e.preventDefault()
+
+        let html = document.querySelector('.ql-editor').innerHTML
+        document.querySelector('input[name="body"]').value = html 
+
+        this.submit()
+      })
+
+    </script>
+@endsection
+

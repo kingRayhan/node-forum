@@ -22,6 +22,12 @@ hooks.after.providersBooted(async () => {
         return Array.from({ length }).map((page, i) => ++i)
     })
 
+    const md5 = require('md5')
+    View.global('getAvater', email => {
+        const $mail = email.toLowerCase()
+        return `https://www.gravatar.com/avatar/${md5($mail)}?s=300&d=mm`
+    })
+
     View.global('log', data => {
         return JSON.stringify(data, undefined, 4)
     })

@@ -110,7 +110,10 @@ class ThreadController {
      * @param {Response} ctx.response
      * @param {View} ctx.view
      */
-    async edit({ params, request, response, view }) {}
+    async edit({ params, request, response, view }) {
+        let thread = await Thread.find(params.id)
+        return view.render('threads.edit', { thread: thread.toJSON() })
+    }
 
     /**
      * Update thread details.
@@ -120,7 +123,38 @@ class ThreadController {
      * @param {Request} ctx.request
      * @param {Response} ctx.response
      */
-    async update({ params, request, response }) {}
+    async update({ params, request, response }) {
+        const valididation = await validateAll(
+            request.all(),
+            {
+                title: 'required|min:5',
+                tag: 'required|exists:Tag,id',
+                body: 'required|min:25'
+            },
+            {
+                required: `{{field}} is required`,
+                'title.min': 'Title must be more than 5 characters',
+                exists: `Tag doesn't exists`,
+                'body.min': `Body must be more than 25 characters.`
+            }
+        )
+
+        if (valididation.fails()) {
+            session.withErrors(valididation.messages()).flashAll()
+            return response.redirect('back')
+        }
+
+        let thread = await Thread.find(params.id)
+
+        let { title, body, tag } = request.all()
+        thread.title = title
+        thread.body = body
+        thread.tag_id = tag
+
+        await thread.save()
+
+        return response.route('threads.show', { id: thread.slug })
+    }
 
     /**
      * Delete a thread with id.

@@ -9,7 +9,9 @@
         <strong>{{reply.user.username}}</strong> <br>
         <small>{{ reply.created_at }}</small>
       </div>
-      <p>{{reply.body}}</p>
+      <div class="ql-snow">
+          <div class="ql-editor">{{{reply.body}}}</div>
+      </div>
       <div class="nested-replies">
         @if(reply.replies.length)
             @each(reply in reply.replies)

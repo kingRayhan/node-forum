@@ -55,6 +55,11 @@ class AuthController {
             return response.route('auth.login')
         }
         session.flash({ msg: 'You have been logged in successfully!!' })
+
+        if (session.get('redirect_to')) {
+            return response.route(session.get('redirect_to'))
+        }
+
         return response.route('homePage')
     }
 

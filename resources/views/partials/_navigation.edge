@@ -9,9 +9,10 @@
         <div class="navbar-end">
           @loggedIn
             <div class="navbar-item">
-              <span>
-                Hi!, {{ auth.user.username }}                
-              </span>
+              <div class="profile-image" style="margin-right: 12px">
+                  <img class="is-rounded" src="{{ getAvater(auth.user.email) }}">
+              </div>
+              {{ '@' + auth.user.username }}
             </div>
 
             <div class="navbar-item">
@@ -33,7 +34,7 @@
                   </a>
                 </p>
                 <p class="control">
-                  <a href="#" class="button is-info is-outlined" onclick="document.getElementById('login-modal').classList.add('is-active')">
+                  <a href="{{ route('auth.login') }}" class="button is-info is-outlined">
                     <span>Login</span>
                   </a>
                 </p>

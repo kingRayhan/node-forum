@@ -4,7 +4,6 @@
 @section('content')
     @set('threads' , threads.toJSON())
 
-
     @!component('partials._pagination' , last_page = threads.lastPage , page = threads.page)
 
     @each(thread in threads.data)
